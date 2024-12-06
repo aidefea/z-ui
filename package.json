@@ -1,0 +1,23 @@
+{
+  "name": "z-utils",
+  "version": "1.0.0",
+  "author": "zyg",
+  "main": "src/index.js",
+  "description": "函数工具库",
+  "keywords": ["utils"],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/CQSDJXCXZ/util"
+  },
+  "bugs": "https://gitee.com/CQSDJXCXZ/util/issues",
+  "license": "ISC",
+  "dependencies": {
+
+  },
+  "devDependencies": {
+
+  }
+}
