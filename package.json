@@ -1,10 +1,12 @@
 {
-  "name": "z-utils",
+  "name": "z-y-g-utils",
   "version": "1.0.0",
   "author": "zyg",
   "main": "src/index.js",
   "description": "函数工具库",
-  "keywords": ["utils"],
+  "keywords": [
+    "utils"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,10 +16,9 @@
   },
   "bugs": "https://gitee.com/CQSDJXCXZ/util/issues",
   "license": "ISC",
-  "dependencies": {
-
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   },
-  "devDependencies": {
-
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }
