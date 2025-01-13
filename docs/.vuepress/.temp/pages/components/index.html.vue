@@ -1,0 +1,40 @@
+<template><div><h1 id="vue-js-介绍" tabindex="-1"><a class="header-anchor" href="#vue-js-介绍"><span>Vue.js 介绍</span></a></h1>
+<p>Vue.js 是一款用于构建用户界面的渐进式 JavaScript 框架。它可以通过简单的 API、响应式的数据绑定和组件化的开发方式，帮助开发者高效构建现代 Web 应用。</p>
+<h2 id="目录" tabindex="-1"><a class="header-anchor" href="#目录"><span>目录</span></a></h2>
+<ol>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF-vuejs">什么是 Vue.js？</a></li>
+<li><a href="#vuejs-%E7%9A%84%E7%89%B9%E7%82%B9">Vue.js 的特点</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85-vuejs">安装 Vue.js</a></li>
+<li><a href="#vue-%E5%AE%9E%E4%BE%8B">Vue 实例</a></li>
+<li><a href="#%E7%BB%84%E4%BB%B6%E5%8C%96%E5%BC%80%E5%8F%91">组件化开发</a></li>
+<li><a href="#vuejs-%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A">Vue.js 数据绑定</a></li>
+<li><a href="#vuejs-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">Vue.js 生命周期</a></li>
+<li><a href="#vue-router">Vue Router</a></li>
+<li><a href="#vuex">Vuex</a></li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
+</ol>
+<h2 id="什么是-vue-js" tabindex="-1"><a class="header-anchor" href="#什么是-vue-js"><span>什么是 Vue.js？</span></a></h2>
+<p>Vue.js 是一款用于构建 Web 界面的渐进式框架。与传统的框架不同，Vue 设计的核心是非常灵活的，它只关注视图层，适合与其它库或现有项目整合，也可以作为单页应用（SPA）的完整框架使用。</p>
+<h3 id="vue-js-的主要特点" tabindex="-1"><a class="header-anchor" href="#vue-js-的主要特点"><span>Vue.js 的主要特点：</span></a></h3>
+<ul>
+<li><strong>响应式数据绑定</strong>：自动更新视图。</li>
+<li><strong>组件化开发</strong>：将 UI 划分为多个可复用的组件。</li>
+<li><strong>简洁的 API</strong>：提供非常直观和易于使用的开发接口。</li>
+<li><strong>强大的生态系统</strong>：提供 Vue Router（路由）、Vuex（状态管理）等官方插件。</li>
+</ul>
+<h2 id="vue-js-的特点" tabindex="-1"><a class="header-anchor" href="#vue-js-的特点"><span>Vue.js 的特点</span></a></h2>
+<ol>
+<li><strong>响应式数据绑定</strong>：通过 Vue 的响应式系统，数据的变化会自动反映到视图上，极大简化了 DOM 操作。</li>
+<li><strong>组件化开发</strong>：将页面划分为多个组件，每个组件都具有自己的模板、样式和行为。</li>
+<li><strong>单文件组件</strong>：Vue 允许你在一个 <code v-pre>.vue</code> 文件中写组件的模板、脚本和样式，方便维护和组织代码。</li>
+<li><strong>虚拟 DOM</strong>：Vue 使用虚拟 DOM 来提高渲染性能。它会通过比较新旧 DOM 的差异，来减少不必要的 DOM 更新。</li>
+<li><strong>轻量级</strong>：Vue 的核心库非常小，只有几十 KB，适合用于快速开发。</li>
+</ol>
+<h2 id="安装-vue-js" tabindex="-1"><a class="header-anchor" href="#安装-vue-js"><span>安装 Vue.js</span></a></h2>
+<h3 id="使用-cdn-引入" tabindex="-1"><a class="header-anchor" href="#使用-cdn-引入"><span>使用 CDN 引入</span></a></h3>
+<p>你可以通过 CDN 引入 Vue.js。只需在 HTML 文件中添加以下 <code v-pre>&lt;script&gt;</code> 标签：</p>
+<div class="language-html line-numbers-mode" data-highlighter="prismjs" data-ext="html" data-title="html"><pre v-pre><code><span class="line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div></div></div></div></template>
+
+
