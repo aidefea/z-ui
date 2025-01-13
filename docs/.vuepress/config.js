@@ -9,7 +9,11 @@ export default defineUserConfig({
       { text: "Home", link: "/" },
       { text: "Guide", link: "/guide/" },
       { text: "components", link: "/components/" },
-      { text: "API", link: "/api/" },
+      {
+        text: "多功能1",
+        prefix: "/functions/",
+        children: ["f1.md", "f2.md"],
+      },
     ],
     sidebar: {
       "/": [
