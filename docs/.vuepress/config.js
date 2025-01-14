@@ -42,4 +42,5 @@ export default defineUserConfig({
     heroImage: "../assets/img/red.png",
   }),
   dest: "./docs/dist", // 指定构建输出目录
+  base: '/z-ui/'
 });
