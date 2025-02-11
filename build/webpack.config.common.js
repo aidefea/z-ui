@@ -1,104 +1,59 @@
 // 加载path模块
 const path = require("path");
-// 处理html模板的插件
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-// 清除冗余文件
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-// 分离css文件（提取css代码）
+const { VueLoaderPlugin } = require("vue-loader");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
+const isDev = process.env.NODE_ENV === "development";
+
+const entryPath = path.resolve(
+  __dirname,
+  `../${isDev ? "sample" : "packages"}/main.js`
+);
+
+const styleLoader = isDev ? "style-loader" : MiniCssExtractPlugin.loader;
 
 // 配置选项
 const option = {
   // 项目入口
   entry: {
-    main: "./src/main.js",
+    main: entryPath,
   },
-  // 项目出口
-  // __dirname全局变量代表是当前绝对路径  E:\stu\GZH52429\webpack2024\code\project
   output: {
     path: path.resolve(__dirname, "../dist"),
-    // filename: "js/bundle-[name]-[fullhash:8].js",
     filename: "main.js",
-    library: "zYGUtils", // 设置全局变量（用于 UMD 格式等）
-    libraryTarget: "umd", // 输出格式，这样你可以兼容不同的环境（如浏览器、Node.js）
+    library: {
+      // 配置库的输出方式
+      name: "zYGUtils", // 库的全局变量名
+      type: "umd", // 输出格式，UMD 适合在多种环境中使用
+    },
+    clean: true, // 清理输出目录
   },
-
+  devtool: false,
+  resolve: {
+    alias: {
+      vue: "vue/dist/vue.runtime.esm-bundler.js",
+    },
+  },
   // 插件
-  // plugins: [
-  //   // 处理html模板的插件
-  //   // new HtmlWebpackPlugin({
-  //   //   title: "主页",
-  //   //   template: "./index.html", // 模板路径
-  //   //   filename: "index.html", // 输出html的文件名称
-  //   //   inject: "head", // 插入脚本的位置
-  //   //   chunks: ["main"], // 插入哪些脚本文件 对应选项“entry”的key
-  //   // }),
-  //   // 清理冗余文件
-  //   new CleanWebpackPlugin(),
-  //   // 提取css
-  //   new MiniCssExtractPlugin({
-  //     filename: "css/[name].css",
-  //   }),
-  // ],
+  plugins: [
+    // // 提取css
+    new MiniCssExtractPlugin({
+      filename: "css/[name].css",
+    }),
+    new VueLoaderPlugin(),
+  ],
   // 加载器 （loader）
   module: {
     rules: [
-      // 处理css
-      // 此处没有提取css代码（分离css源代码）
-      // {
-      //     test: /\.css$/i, // 打包的是css文件  demo.css
-      //     use: [
-      //         "style-loader",//把编译后的js写入bundle.js文件
-      //         "css-loader" // 把css编译成js
-      //     ],
-      // },
-
-      //  此处提取了css代码（做css源代码分离）
+      {
+        test: /\.vue$/,
+        loader: "vue-loader",
+      },
       {
         test: /\.css$/i,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: "",
-            },
-          },
-          "css-loader",
-        ],
+        use: [styleLoader, "css-loader", "postcss-loader"],
       },
-
-      // 处理less
-      // less 是CSS的拓展语言 （预处理语言，就是说浏览器不能直接解析less代码，需要把less编译成css才可以使用）
-      // less 这种语法编写项目的样式，更加便捷，灵活。（提高CSS编写效率）
-      {
-        test: /\.less$/i,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          "css-loader",
-          "less-loader",
-        ],
-      },
-
-      // 处理scss文档( demo.sass | demo.scss)
-      {
-        test: /\.s[ac]ss$/i,
-        use: [
-          // 把js样式对应的脚本写入bundle.js文件
-          // "style-loader",
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          // 把css转换成js
-          "css-loader",
-          // 编译sass成css
-          "sass-loader",
-        ],
-      },
-      // 同构模式(前后端写一起)
-      // 前后端分离开发模式(前端和后端)
-      // 处理图标|图片
       {
         test: /\.(png|jpe?g|gif)$/i,
         // 打包时排除 node_modules 目录下的文件 （这个目录下的文件不需要打包）
@@ -121,8 +76,6 @@ const option = {
           },
         ],
       },
-
-      // 处理html中的图片
       {
         test: /\.html$/i,
         loader: "html-loader",
@@ -131,7 +84,6 @@ const option = {
           esModule: false,
         },
       },
-
       {
         test: /\.js$/,
         exclude: /node_modules/,
