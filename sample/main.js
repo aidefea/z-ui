@@ -1,8 +1,7 @@
 import { createApp } from "vue";
 import App from "./index.vue";
-// import ZUI from "../packages/main.js";
 import ZUI from "z-zygui";
-import "z-zygui-css";
+import "z-zygui/main.css";
 
 const app = createApp(App);
 app.use(ZUI);
