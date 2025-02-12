@@ -32,14 +32,14 @@ const option = {
   devtool: false,
   resolve: {
     alias: {
-      vue: "vue/dist/vue.runtime.esm-bundler.js",
+      "z-zygui-css": "z-zygui/dist/main.css",
     },
   },
   // 插件
   plugins: [
     // // 提取css
     new MiniCssExtractPlugin({
-      filename: "css/[name].css",
+      filename: "[name].css",
     }),
     new VueLoaderPlugin(),
   ],
