@@ -1,11 +1,10 @@
-import toast from "./toast/index.vue";
 import ToastFactory from "./toast/index.js";
-
+import button from "./button/index.vue";
 // 按需引入
-export { toast };
+export { button };
 
 //组件
-const component = [toast];
+const component = [button];
 
 //函数
 const functions = [{ toast: ToastFactory }];

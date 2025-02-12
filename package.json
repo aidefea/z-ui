@@ -60,6 +60,6 @@
   },
   "dependencies": {
     "vue": "^3.5.13",
-    "z-zygui": "^1.1.2"
+    "z-zygui": "^1.1.3"
   }
 }
