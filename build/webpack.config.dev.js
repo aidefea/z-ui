@@ -2,6 +2,7 @@
 const path = require("path");
 const option = require("./webpack.config.common");
 const { merge } = require("webpack-merge");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 // const path = require("path");
 // 开发环境
 const devConfig = {
