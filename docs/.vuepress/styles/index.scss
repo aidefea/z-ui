@@ -1,0 +1,12 @@
+/* 控制内容容器对齐 */
+.theme-container .content {
+  max-width: 1200px; // 调整内容区域宽度
+  margin: 0 auto 0 0; // 取消居中（右侧 auto 改为 0）
+  text-align: left; // 强制文本左对齐
+  padding-left: 2rem; // 添加左侧缩进（可选）
+}
+
+/* 修复代码块对齐 */
+div[class*="language-"] {
+  margin: 0.85rem 0;
+}

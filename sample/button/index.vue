@@ -1,6 +1,5 @@
 <template>
   <div>
-    123123123
     <my-button type="primary">主要按钮</my-button>
     <my-button type="success" icon="✓">成功按钮</my-button>
     <my-button type="danger" :loading="true">加载中</my-button>

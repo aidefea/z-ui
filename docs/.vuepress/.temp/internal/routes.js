@@ -1,9 +1,12 @@
 export const redirects = JSON.parse("{}")
 
 export const routes = Object.fromEntries([
-  ["/", { loader: () => import(/* webpackChunkName: "index.html" */"D:/Code/util/docs/.vuepress/.temp/pages/index.html.js"), meta: {"title":"组件库"} }],
-  ["/components/", { loader: () => import(/* webpackChunkName: "components_index.html" */"D:/Code/util/docs/.vuepress/.temp/pages/components/index.html.js"), meta: {"title":"Vue.js 介绍"} }],
-  ["/guide/", { loader: () => import(/* webpackChunkName: "guide_index.html" */"D:/Code/util/docs/.vuepress/.temp/pages/guide/index.html.js"), meta: {"title":"页面的标题"} }],
+  ["/", { loader: () => import(/* webpackChunkName: "index.html" */"D:/Code/util/docs/.vuepress/.temp/pages/index.html.js"), meta: {"title":"项目名称"} }],
+  ["/componentmd/button.html", { loader: () => import(/* webpackChunkName: "componentmd_button.html" */"D:/Code/util/docs/.vuepress/.temp/pages/componentmd/button.html.js"), meta: {"title":"Button 按钮"} }],
+  ["/componentmd/input.html", { loader: () => import(/* webpackChunkName: "componentmd_input.html" */"D:/Code/util/docs/.vuepress/.temp/pages/componentmd/input.html.js"), meta: {"title":"input 输入框"} }],
+  ["/componentmd/", { loader: () => import(/* webpackChunkName: "componentmd_index.html" */"D:/Code/util/docs/.vuepress/.temp/pages/componentmd/index.html.js"), meta: {"title":""} }],
+  ["/componentmd/table.html", { loader: () => import(/* webpackChunkName: "componentmd_table.html" */"D:/Code/util/docs/.vuepress/.temp/pages/componentmd/table.html.js"), meta: {"title":"table 表格"} }],
+  ["/componentmd/toast.html", { loader: () => import(/* webpackChunkName: "componentmd_toast.html" */"D:/Code/util/docs/.vuepress/.temp/pages/componentmd/toast.html.js"), meta: {"title":"toast 信息提示框"} }],
   ["/404.html", { loader: () => import(/* webpackChunkName: "404.html" */"D:/Code/util/docs/.vuepress/.temp/pages/404.html.js"), meta: {"title":""} }],
 ]);
 

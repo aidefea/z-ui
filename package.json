@@ -59,6 +59,8 @@
     "webpack-merge": "^6.0.1"
   },
   "dependencies": {
+    "@vuepress/plugin-register-components": "^2.0.0-rc.66",
+    "@vuepress/plugin-search": "^1.9.10",
     "vue": "^3.5.13",
     "z-zygui": "^1.1.3"
   }

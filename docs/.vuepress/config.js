@@ -1,45 +1,55 @@
 import { viteBundler } from "@vuepress/bundler-vite";
 import { defaultTheme } from "@vuepress/theme-default";
 import { defineUserConfig } from "vuepress";
+import { registerComponentsPlugin } from "@vuepress/plugin-register-components";
+import { path } from "@vuepress/utils";
+// const { searchPlugin } = require("@vuepress/plugin-search");
 
 export default defineUserConfig({
   bundler: viteBundler(),
   theme: defaultTheme({
+    logo: "./assets/img/ng.png",
     navbar: [
-      { text: "Home", link: "/" },
-      { text: "Guide", link: "/guide/" },
-      { text: "components", link: "/components/" },
-      {
-        text: "多功能1",
-        prefix: "/functions/",
-        children: ["f1.md", "f2.md"],
-      },
+      { text: "Z-ZYGUI", link: "/" },
+      { text: "组件", link: "/componentmd/" },
     ],
     sidebar: {
       "/": [
         {
-          text: "Introduction", // 侧边栏的标题
-          children: ["/"], // 该标题下的子链接
+          text: "入门指南",
+          children: ["/"],
         },
       ],
-      "/guide/": [
+      "/componentmd/": [
         {
-          text: "Introduction", // 侧边栏的标题
-          children: ["/guide/"], // 该标题下的子链接
-        },
-        {
-          text: "Getting Started",
-          children: [],
+          text: "组件库",
+          children: [
+            "/componentmd/button",
+            "/componentmd/toast",
+            "/componentmd/input",
+            "/componentmd/table",
+          ],
         },
       ],
     },
-    logo: "../assets/img/ng.png",
+    plugins: [
+      registerComponentsPlugin({
+        componentsDir: path.resolve(__dirname, "../components"),
+      }),
+      // searchPlugin({
+      //   locales: {
+      //     "/": {
+      //       placeholder: "Search",
+      //     },
+      //   },
+      // }),
+    ],
     footer: "Made with VuePress", // 页脚自定义
     repo: "https://gitee.com/CQSDJXCXZ/util",
-    search: true, // 启用搜索功能
+    search: true,
     home: "/", // 首页链接
     heroText: "My Awesome Blog", // 首页标题
-    heroImage: "../assets/img/red.png",
+    heroImage: "./assets/img/red.png",
   }),
   dest: "./docs/dist", // 指定构建输出目录
 });
