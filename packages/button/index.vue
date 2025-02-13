@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: "ElButton",
+  name: "zButton",
   props: {
     type: {
       type: String,

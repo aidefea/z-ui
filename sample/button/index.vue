@@ -1,19 +1,19 @@
 <template>
   <div>
-    <my-button type="primary">主要按钮</my-button>
-    <my-button type="success" icon="✓">成功按钮</my-button>
-    <my-button type="danger" :loading="true">加载中</my-button>
-    <my-button round>圆角按钮</my-button>
-    <my-button circle icon="✓"></my-button>
-    <my-button disabled>禁用按钮</my-button>
+    <z-button type="primary">主要按钮</z-button>
+    <z-button type="success" icon="✓">成功按钮</z-button>
+    <z-button type="danger" :loading="true">加载中</z-button>
+    <z-button round>圆角按钮</z-button>
+    <z-button circle icon="✓"></z-button>
+    <z-button disabled>禁用按钮</z-button>
   </div>
 </template>
 
 <script>
-import myButton from "../../packages/button/index.vue";
+import { zButton } from "../../packages/main.js";
 export default {
   components: {
-    myButton,
+    zButton,
   },
   methods: {},
 };
