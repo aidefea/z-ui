@@ -10,25 +10,36 @@ title: toast 信息提示框
 
 展示一个简单的按钮组件。
 
-<MyGlobalComponent></MyGlobalComponent>
-
-## 参数说明
-
-| 参数名   | 类型     | 默认值  | 说明                            |
-| -------- | -------- | ------- | ------------------------------- |
-| type     | String   | default | 按钮类型（primary、success 等） |
-| disabled | Boolean  | false   | 是否禁用按钮                    |
-| loading  | Boolean  | false   | 是否显示加载状态                |
-| size     | String   | medium  | 按钮大小（large、small 等）     |
-| click    | Function | -       | 点击事件的回调函数              |
+<Mytoast></Mytoast>
 
 ## 代码示例
 
-### 基础用法
-
 ```js
-import { myButton } from "z-zygui";
 <template>
-  <my-button type="primary">主要按钮</my-button>
-</template>;
+  <button @click="showToast">Show Toast</button>
+</template>
+
+<script>
+export default {
+  methods: {
+    showToast() {
+      this.$toast("This is a toast message!", {
+        duration: 5000,
+        type: "error",
+        closable: true,
+      });
+    },
+  },
+};
+</script>
 ```
+
+## 参数说明
+
+| 参数名   | 类型     | 默认值 | 说明                                          |
+| -------- | -------- | ------ | --------------------------------------------- |
+| message  | String   | -      | 提示信息                                      |
+| duration | Number   | 3000   | 默认消失时间                                  |
+| type     | String   | info   | 默认类型 ("info","success","warning","error") |
+| closable | Boolean  | true   | 默认关闭按钮                                  |
+| onClose  | Function | -      | 手动关闭信息时的回调函数                      |

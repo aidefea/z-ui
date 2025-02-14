@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="a">
     <z-button type="primary">主要按钮</z-button>
     <z-button type="success" icon="✓">成功按钮</z-button>
     <z-button type="danger" :loading="true">加载中</z-button>
@@ -18,4 +18,11 @@ export default {
   methods: {},
 };
 </script>
-<style></style>
+<style>
+.a {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+</style>

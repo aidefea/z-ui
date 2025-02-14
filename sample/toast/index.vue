@@ -3,10 +3,11 @@
 </template>
 
 <script>
+import ToastFactory from "../../packages/toast/index.js";
 export default {
   methods: {
     showToast() {
-      this.$toast("This is a toast message!", {
+      ToastFactory("This is a toast message!", {
         duration: 5000,
         type: "error",
         closable: true,

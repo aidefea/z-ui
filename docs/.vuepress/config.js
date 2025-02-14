@@ -3,12 +3,11 @@ import { defaultTheme } from "@vuepress/theme-default";
 import { defineUserConfig } from "vuepress";
 import { registerComponentsPlugin } from "@vuepress/plugin-register-components";
 import { path } from "@vuepress/utils";
-// const { searchPlugin } = require("@vuepress/plugin-search");
 
 export default defineUserConfig({
   bundler: viteBundler(),
   theme: defaultTheme({
-    logo: "./assets/img/ng.png",
+    logo: "../assets/img/ng.png",
     navbar: [
       { text: "Z-ZYGUI", link: "/" },
       { text: "组件", link: "/componentmd/" },
@@ -26,30 +25,21 @@ export default defineUserConfig({
           children: [
             "/componentmd/button",
             "/componentmd/toast",
-            "/componentmd/input",
-            "/componentmd/table",
+            "/componentmd/popup.md",
           ],
         },
       ],
     },
     plugins: [
       registerComponentsPlugin({
-        componentsDir: path.resolve(__dirname, "../components"),
+        componentsDir: path.resolve(__dirname, "../../sample"),
       }),
-      // searchPlugin({
-      //   locales: {
-      //     "/": {
-      //       placeholder: "Search",
-      //     },
-      //   },
-      // }),
     ],
     footer: "Made with VuePress", // 页脚自定义
     repo: "https://gitee.com/CQSDJXCXZ/util",
     search: true,
     home: "/", // 首页链接
     heroText: "My Awesome Blog", // 首页标题
-    heroImage: "./assets/img/red.png",
   }),
   dest: "./docs/dist", // 指定构建输出目录
 });
