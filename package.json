@@ -3,7 +3,7 @@
   "version": "1.1.4",
   "author": "zyg",
   "main": "dist/main.js",
-  "description": "函数工具库",
+  "description": "z-zygui库",
   "keywords": [
     "utils"
   ],
