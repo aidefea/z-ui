@@ -42,4 +42,5 @@ export default defineUserConfig({
     heroText: "My Awesome Blog", // 首页标题
   }),
   dest: "./docs/dist", // 指定构建输出目录
+  base: '/z-ui/'
 });
