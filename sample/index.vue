@@ -1,13 +1,19 @@
 <template>
-  <toast></toast>
-  <mybuton></mybuton>
-  <mypopup></mypopup>
+  <div>
+    <z-button type="primary">主要按钮</z-button>
+    <z-input></z-input>
+  </div>
 </template>
 
-<script setup>
-import toast from "./toast/index.vue";
-import mybuton from "./button/index.vue";
-import mypopup from "./popup/index.vue";
+<script>
+// import styt from "../dist/main.module.css";
+export default {
+  data() {
+    return {
+      // styt,
+    };
+  },
+};
 </script>
 
 <style></style>

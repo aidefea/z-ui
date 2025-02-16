@@ -2,7 +2,7 @@
 const path = require("path");
 const { VueLoaderPlugin } = require("vue-loader");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-// const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
 
 const isDev = process.env.NODE_ENV === "development";
 
@@ -30,11 +30,6 @@ const option = {
     clean: true, // 清理输出目录
   },
   devtool: false,
-  resolve: {
-    alias: {
-      "z-zygui-css": "z-zygui/dist/main.css",
-    },
-  },
   // 插件
   plugins: [
     // // 提取css
@@ -42,6 +37,11 @@ const option = {
       filename: "[name].css",
     }),
     new VueLoaderPlugin(),
+    new webpack.DefinePlugin({
+      __VUE_OPTIONS_API__: JSON.stringify(true),
+      __VUE_PROD_DEVTOOLS__: JSON.stringify(false),
+      __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(false),
+    }),
   ],
   // 加载器 （loader）
   module: {
@@ -52,7 +52,21 @@ const option = {
       },
       {
         test: /\.css$/i,
-        use: [styleLoader, "css-loader", "postcss-loader"],
+        // use: [styleLoader, "css-loader", "postcss-loader"],
+        use: [
+          // "style-loader", // 将 CSS 注入到 DOM 中
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                mode: "local",
+                localIdentName: "[local]__[hash:base64:5]",
+                exportLocalsConvention: "camelCase",
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
@@ -95,6 +109,11 @@ const option = {
         },
       },
     ],
+  },
+  resolve: {
+    alias: {
+      "z-zygui-css": "z-zygui/dist/main.css",
+    },
   },
   //警告 webpack 的性能提示
   performance: {

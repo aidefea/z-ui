@@ -1,22 +1,26 @@
 import ToastFactory from "./toast/index.js";
-import zButton from "./button/index.vue";
-import zpopup from "./popup/index.vue";
+import zbutton from "./button/index.js";
+import zpopup from "./popup/index.js";
+import zinput from "./input/index.js";
 
 //组件
-const component = [zButton, zpopup];
+const components = {
+  ZButton: zbutton,
+  ZPopup: zpopup,
+  ZInput: zinput,
+};
 
 // 按需引入
-export { zButton, zpopup };
+export { zbutton, zpopup, zinput };
 
 //函数
 const functions = [{ toast: ToastFactory }];
 
 const ZUI = {
   install(App) {
-    component.forEach((item) => {
-      App.component(item.name, item);
+    Object.entries(components).forEach(([name, component]) => {
+      App.component(name, component);
     });
-
     functions.forEach((fnObj) => {
       for (const [name, fn] of Object.entries(fnObj)) {
         App.config.globalProperties[`$${name}`] = fn;

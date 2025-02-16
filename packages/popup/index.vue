@@ -34,6 +34,7 @@
 
 <script>
 export default {
+  name: "zpopup",
   props: {
     visible: { type: Boolean, default: false },
     width: { type: Number, default: 600 },
@@ -81,7 +82,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style module>
 .overlay {
   position: fixed;
   top: 0;

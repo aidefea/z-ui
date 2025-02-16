@@ -1,23 +1,22 @@
 <template>
   <button
     :class="buttonClasses"
+    v-bind="$attrs"
     :disabled="disabled || loading"
     :type="nativeType"
-    :autofocus="autofocus"
-    @click="handleClick"
-    v-bind="$attrs"
+    @click="getss"
   >
     <span class="button-content">
       <i v-if="loading" class="button-loading"></i>
-      <i v-else-if="icon" :class="icon"></i>
-      <span v-if="$slots.default"><slot></slot></span>
+      <!-- <span v-if="$slots.default"><slot></slot></span> -->
+      按钮组件
     </span>
   </button>
 </template>
 
 <script>
 export default {
-  name: "zButton",
+  name: "zbutton",
   props: {
     type: {
       type: String,
@@ -41,7 +40,6 @@ export default {
         return ["medium", "small", "mini"].includes(value);
       },
     },
-    icon: String,
     nativeType: {
       type: String,
       default: "button",
@@ -49,12 +47,26 @@ export default {
         return ["button", "submit", "reset"].includes(value);
       },
     },
-    loading: Boolean,
-    disabled: Boolean,
-    plain: Boolean,
-    round: Boolean,
-    circle: Boolean,
-    autofocus: Boolean,
+    loading: {
+      type: Boolean,
+      default: false,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    plain: {
+      type: Boolean,
+      default: false,
+    },
+    round: {
+      type: Boolean,
+      default: false,
+    },
+    circle: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     buttonClasses() {
@@ -73,16 +85,14 @@ export default {
     },
   },
   methods: {
-    handleClick(evt) {
-      if (!this.loading && !this.disabled) {
-        this.$emit("click", evt);
-      }
+    getss() {
+      console.log("111");
     },
   },
 };
 </script>
 
-<style scoped>
+<style module>
 .el-button {
   display: inline-flex;
   justify-content: center;

@@ -6,6 +6,8 @@
 
 #### 软件架构
 
+组件库说明文档：https://aidefea.github.io/z-ui/
+
 软件架构说明
 
 #### 安装教程

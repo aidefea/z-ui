@@ -1,3 +1,3 @@
-import popup from "./index.vue";
+import zpopup from "./index.vue";
 
-export default popup;
+export default zpopup;
