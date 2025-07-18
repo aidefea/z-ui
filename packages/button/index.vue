@@ -1,98 +1,90 @@
 <template>
   <button
-    :class="buttonClasses"
+    :class="[
+      'el-button',
+      `el-button--${props.type}`,
+      `el-button--${props.size}`,
+      {
+        'is-disabled': isDisabled,
+        'is-loading': props.loading,
+        'is-plain': props.plain,
+        'is-round': props.round,
+        'is-circle': props.circle,
+      },
+    ]"
     v-bind="$attrs"
-    :disabled="disabled || loading"
+    :disabled="isDisabled"
     :type="nativeType"
-    @click="getss"
   >
-    <span class="button-content">
-      <i v-if="loading" class="button-loading"></i>
-      <!-- <span v-if="$slots.default"><slot></slot></span> -->
-      按钮组件
+    <span>
+      <i v-if="loading" class="buttonLoading"></i>
+      <slot></slot>
     </span>
   </button>
 </template>
 
-<script>
-export default {
-  name: "zbutton",
-  props: {
-    type: {
-      type: String,
-      default: "default",
-      validator: function (value) {
-        return [
-          "default",
-          "primary",
-          "success",
-          "warning",
-          "danger",
-          "info",
-          "text",
-        ].includes(value);
-      },
-    },
-    size: {
-      type: String,
-      default: "medium",
-      validator: function (value) {
-        return ["medium", "small", "mini"].includes(value);
-      },
-    },
-    nativeType: {
-      type: String,
-      default: "button",
-      validator: function (value) {
-        return ["button", "submit", "reset"].includes(value);
-      },
-    },
-    loading: {
-      type: Boolean,
-      default: false,
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    plain: {
-      type: Boolean,
-      default: false,
-    },
-    round: {
-      type: Boolean,
-      default: false,
-    },
-    circle: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  computed: {
-    buttonClasses() {
+<script setup>
+import { useSlots, computed } from "vue";
+
+const slots = useSlots();
+
+const props = defineProps({
+  type: {
+    type: String,
+    default: "default",
+    validator: (value) => {
       return [
-        "el-button",
-        this.type ? "el-button--" + this.type : "",
-        this.size ? "el-button--" + this.size : "",
-        {
-          "is-disabled": this.disabled,
-          "is-loading": this.loading,
-          "is-plain": this.plain,
-          "is-round": this.round,
-          "is-circle": this.circle,
-        },
-      ];
+        "default",
+        "primary",
+        "success",
+        "warning",
+        "danger",
+        "info",
+        "text",
+      ].includes(value);
     },
   },
-  methods: {
-    getss() {
-      console.log("111");
+  size: {
+    type: String,
+    default: "medium",
+    validator: (value) => {
+      return ["medium", "small", "mini"].includes(value);
     },
   },
-};
+  nativeType: {
+    type: String,
+    default: "button",
+    validator: (value) => {
+      return ["button", "submit", "reset"].includes(value);
+    },
+  },
+  loading: {
+    type: Boolean,
+    default: false,
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  plain: {
+    type: Boolean,
+    default: false,
+  },
+  round: {
+    type: Boolean,
+    default: false,
+  },
+  circle: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+// 计算属性：按钮是否禁用
+const isDisabled = computed(() => props.disabled || props.loading);
 </script>
 
-<style module>
+<style scoped>
 .el-button {
   display: inline-flex;
   justify-content: center;
@@ -178,7 +170,7 @@ export default {
 }
 
 /* 加载动画 */
-.button-loading {
+.buttonLoading {
   animation: rotating 1s linear infinite;
   margin-right: 5px;
   display: inline-block;
@@ -187,6 +179,7 @@ export default {
   border: 2px solid #ccc;
   border-top-color: transparent;
   border-radius: 50%;
+  vertical-align: middle; /* 使加载圈与文字垂直居中 */
 }
 
 @keyframes rotating {

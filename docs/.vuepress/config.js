@@ -23,9 +23,11 @@ export default defineUserConfig({
         {
           text: "组件库",
           children: [
-            "/componentmd/button",
-            "/componentmd/toast",
+            "/componentmd/button.md",
+            "/componentmd/toast.md",
             "/componentmd/popup.md",
+            "/componentmd/drawer.md",
+            "/componentmd/loading.md",
           ],
         },
       ],
@@ -42,5 +44,5 @@ export default defineUserConfig({
     heroText: "My Awesome Blog", // 首页标题
   }),
   dest: "./docs/dist", // 指定构建输出目录
-  base: '/z-ui/'
+  base: "/z-ui/",
 });

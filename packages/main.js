@@ -1,17 +1,14 @@
 import ToastFactory from "./toast/index.js";
-import zbutton from "./button/index.js";
+import ZButton from "./button/index.js";
 import zpopup from "./popup/index.js";
-import zinput from "./input/index.js";
 
 //组件
 const components = {
-  ZButton: zbutton,
-  ZPopup: zpopup,
-  ZInput: zinput,
+  ZButton: ZButton,
+  zpopup: zpopup,
 };
 
-// 按需引入
-export { zbutton, zpopup, zinput };
+export { ZButton };
 
 //函数
 const functions = [{ toast: ToastFactory }];

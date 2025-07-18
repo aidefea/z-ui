@@ -14,7 +14,7 @@ const ToastFactory = (message, options = {}) => {
         duration,
         type,
         closable,
-        onClose() {
+        onClose: () => {
           app.unmount();
           if (container.parentNode) {
             document.body.removeChild(container);
@@ -26,16 +26,15 @@ const ToastFactory = (message, options = {}) => {
 
   app.mount(container);
 
-  // 自动关闭 Toast
-  if (duration > 0) {
-    setTimeout(() => {
-      app.unmount();
-      // 确保容器仍然存在
-      if (container.parentNode) {
-        document.body.removeChild(container);
+  // 返回关闭方法
+  return {
+    close: () => {
+      const toastComponent = app._instance?.proxy;
+      if (toastComponent) {
+        toastComponent.closeToast();
       }
-    }, duration);
-  }
+    },
+  };
 };
 
 export default ToastFactory;

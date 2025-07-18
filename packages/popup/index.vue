@@ -1,148 +1,169 @@
 <template>
-  <div
-    v-if="visible"
-    class="overlay no-context-menu"
-    @click.self="handleOverlayClick"
-  >
+  <div v-if="visible" class="z-overlay" @click.self="handleOverlayClick">
     <div
-      class="popup"
-      :class="{ fullscreen: isFullscreen }"
-      :style="{ width: width + 'px', height: height + 'px' }"
+      :class="['z-popup', { 'z-fullscreen': isFullscreen }]"
+      :style="popupStyle"
     >
       <!-- 弹窗头部 -->
-      <div class="popup-header">
-        <!-- 全屏按钮（根据配置显示） -->
-        <button
-          v-if="showFullscreenButton"
-          class="fullscreen-btn"
-          @click="toggleFullscreen"
-        >
-          ⛶
-        </button>
-        <!-- 关闭按钮 -->
-        <button aria-label="Close" class="close-btn" @click="handleClose">
-          ×
-        </button>
+      <div class="z-popup-header">
+        <div class="z-fullscreen-btn" @click="toggleFullscreen">
+          <span
+            class="iconfont"
+            :class="[isFullscreen ? 'icon-banping' : 'icon-quanping']"
+          ></span>
+        </div>
+        <div class="z-close-btn" @click="handleClose">
+          <span class="iconfont icon-guanbi"></span>
+        </div>
       </div>
-      <!-- 弹窗内容 -->
-      <div class="popup-body">
+
+      <!-- 弹窗主体内容 -->
+      <div class="z-popup-body">
         <slot></slot>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: "zpopup",
-  props: {
-    visible: { type: Boolean, default: false },
-    width: { type: Number, default: 600 },
-    height: { type: Number, default: 400 },
-    showFullscreenButton: { type: Boolean, default: true },
+<script setup>
+import { ref, computed, defineProps, defineEmits } from "vue";
+
+const props = defineProps({
+  visible: {
+    type: Boolean,
+    default: false,
   },
-  data() {
-    return { isFullscreen: false };
+  width: {
+    type: Number,
+    default: 600, // 默认宽度
   },
-  methods: {
-    // 点击遮罩层关闭
-    handleOverlayClick() {
-      this.closePopup();
-    },
-    // 关闭按钮点击
-    handleClose() {
-      this.closePopup();
-    },
-    // 关闭弹窗逻辑
-    closePopup() {
-      this.$emit("update:visible", false);
-      this.isFullscreen = false; // 关闭时重置全屏状态
-    },
-    // 全屏切换
-    toggleFullscreen() {
-      this.isFullscreen = !this.isFullscreen;
-    },
-    // ESC 键关闭监听
-    handleKeydown(e) {
-      if (e.key === "Escape" && this.visible) this.closePopup();
-    },
+  height: {
+    type: Number,
+    default: 400, // 默认高度
   },
-  watch: {
-    // 禁止背景滚动
-    visible(val) {
-      document.body.style.overflow = val ? "hidden" : "";
-    },
-  },
-  mounted() {
-    document.addEventListener("keydown", this.handleKeydown);
-  },
-  beforeDestroy() {
-    document.removeEventListener("keydown", this.handleKeydown);
-  },
+});
+
+const isFullscreen = ref(false);
+
+const popupStyle = computed(() => {
+  const width = isFullscreen.value ? "100vw" : `${props.width}px`;
+  const height = isFullscreen.value ? "100vh" : `${props.height}px`;
+  return { width, height };
+});
+
+const emit = defineEmits(["update:visible"]);
+
+const handleOverlayClick = () => {
+  closePopup();
+};
+
+const handleClose = () => {
+  closePopup();
+};
+
+const closePopup = () => {
+  emit("update:visible", false);
+  isFullscreen.value = false;
+};
+
+const toggleFullscreen = () => {
+  isFullscreen.value = !isFullscreen.value;
 };
 </script>
 
-<style module>
-.overlay {
+<style>
+.z-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
 }
 
-.popup {
+.z-popup {
   position: relative;
   background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  overflow: auto;
-  box-sizing: border-box;
+  border-radius: 16px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
   transition: all 0.3s ease;
+  overflow: hidden;
 }
 
-.popup-header {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-}
-
-.close-btn {
-  width: 23px;
-  height: 23px;
-  border-radius: 50%;
-  background-color: #00000042;
-  border: none;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.close-btn:hover {
-  background-color: #00000060;
-}
-
-/* 全屏模式样式 */
-.popup.fullscreen {
+.z-popup.z-fullscreen {
+  border-radius: 0;
   width: 100vw !important;
   height: 100vh !important;
-  max-width: none;
-  border-radius: 0;
 }
 
-.popup-body {
-  width: 100%;
-  box-sizing: border-box;
-  margin-top: 10px; /* 防止内容被关闭按钮遮挡 */
+.z-popup-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 15px;
+  flex-shrink: 0;
 }
 
-/* 悬停效果 */
-.close-btn:hover,
-.fullscreen-btn:hover {
-  background-color: #00000060;
+.z-close-btn,
+.z-fullscreen-btn {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.1);
+  color: #333;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s;
+  margin-left: 10px;
+}
+
+.z-close-btn:hover,
+.z-fullscreen-btn:hover {
+  background: rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+}
+
+.z-iconfont {
+  font-size: 13px;
+}
+
+.z-popup-body {
+  flex: 1;
+  padding: 20px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 隐藏滚动条 */
+.z-popup-body::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* 隐藏滚动条轨道外层 */
+.z-popup-body::-webkit-scrollbar-track {
+  display: none;
+}
+
+/* 自定义滚动条滑块 */
+.z-popup-body::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 2px;
+  border: none;
+}
+
+/* 去掉滚动条轨道（外部包裹） */
+.z-popup-body::-webkit-scrollbar-track-piece {
+  background-color: transparent;
 }
 </style>

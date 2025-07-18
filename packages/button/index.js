@@ -1,3 +1,3 @@
-import zbutton from "./index.vue";
+import ZButton from "./index.vue";
 
-export default zbutton;
+export default ZButton;

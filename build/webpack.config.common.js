@@ -11,7 +11,7 @@ const entryPath = path.resolve(
   `../${isDev ? "sample" : "packages"}/main.js`
 );
 
-const styleLoader = isDev ? "style-loader" : MiniCssExtractPlugin.loader;
+// const styleLoader = isDev ? "style-loader" : MiniCssExtractPlugin.loader;
 
 // 配置选项
 const option = {
@@ -32,11 +32,11 @@ const option = {
   devtool: false,
   // 插件
   plugins: [
-    // // 提取css
+    new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
       filename: "[name].css",
+      chunkFilename: "[id].css",
     }),
-    new VueLoaderPlugin(),
     new webpack.DefinePlugin({
       __VUE_OPTIONS_API__: JSON.stringify(true),
       __VUE_PROD_DEVTOOLS__: JSON.stringify(false),
@@ -51,19 +51,13 @@ const option = {
         loader: "vue-loader",
       },
       {
-        test: /\.css$/i,
-        // use: [styleLoader, "css-loader", "postcss-loader"],
+        test: /\.css$/,
         use: [
-          // "style-loader", // 将 CSS 注入到 DOM 中
           MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
             options: {
-              modules: {
-                mode: "local",
-                localIdentName: "[local]__[hash:base64:5]",
-                exportLocalsConvention: "camelCase",
-              },
+              modules: false, // 禁用 CSS 模块化
             },
           },
         ],
@@ -111,8 +105,16 @@ const option = {
     ],
   },
   resolve: {
+    //项目中设置路劲别名
     alias: {
-      "z-zygui-css": "z-zygui/dist/main.css",
+      "z-zygui-css": path.resolve(
+        __dirname,
+        "../node_modules/z-zygui/dist/main.css"
+      ),
+      "z-zygui": path.resolve(
+        __dirname,
+        "../node_modules/z-zygui/dist/main.js"
+      ),
     },
   },
   //警告 webpack 的性能提示

@@ -1,6 +1,5 @@
 <template><div><h1 id="项目名称" tabindex="-1"><a class="header-anchor" href="#项目名称"><span>项目名称</span></a></h1>
 <p>简要描述项目的功能和目标。</p>
-<p><img src="https://n.sinaimg.cn/sinakd10123/56/w690h966/20210418/8f90-knvsnuh3426644.jpg" alt="项目徽标"></p>
 <h2 id="项目简介" tabindex="-1"><a class="header-anchor" href="#项目简介"><span>项目简介</span></a></h2>
 <p>这是一个组件库</p>
 <h2 id="安装与使用" tabindex="-1"><a class="header-anchor" href="#安装与使用"><span>安装与使用</span></a></h2>

@@ -1,22 +1,16 @@
 <template>
   <div class="a">
-    <zbutton type="primary">主要按钮</zbutton>
-    <zbutton type="success" icon="✓">成功按钮</zbutton>
-    <zbutton type="danger" :loading="true">加载中</zbutton>
-    <zbutton round>圆角按钮</zbutton>
-    <zbutton circle icon="✓"></zbutton>
-    <zbutton disabled>禁用按钮</zbutton>
+    <z-button type="primary">主要按钮</z-button>
+    <z-button type="success" icon="✓">成功按钮</z-button>
+    <z-button type="danger" :loading="true">加载中</z-button>
+    <z-button round>圆角按钮</z-button>
+    <z-button circle icon="x"></z-button>
+    <z-button disabled>禁用按钮</z-button>
   </div>
 </template>
 
-<script>
-import { zbutton } from "../../packages/main.js";
-export default {
-  components: {
-    zbutton,
-  },
-  methods: {},
-};
+<script setup>
+import { ZButton } from "../../packages/main.js";
 </script>
 <style>
 .a {

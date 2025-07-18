@@ -1,33 +1,26 @@
 <template>
   <div>
-    <button @click="getcc">显示</button>
+    <ZButton type="primary" @click="showpup">显示</ZButton>
     <zpopup
       v-model:visible="showPopup"
       :width="800"
       :height="500"
       :showFullscreenButton="true"
     >
-      <h1>123</h1>
+      <h1>这是弹出框</h1>
     </zpopup>
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from "vue";
 import zpopup from "../../packages/popup/index.vue";
-export default {
-  components: {
-    zpopup,
-  },
-  data() {
-    return {
-      showPopup: false,
-    };
-  },
-  methods: {
-    getcc() {
-      this.showPopup = true;
-    },
-  },
+import ZButton from "../../packages/button/index.vue";
+
+const showPopup = ref(false);
+
+const showpup = () => {
+  showPopup.value = true;
 };
 </script>
 
