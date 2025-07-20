@@ -21,7 +21,6 @@ title: loading 全屏加载
 import Loading from "z-zygui";
 const showToast = () => {
   const loading = Loading.show({
-    lock: true,
     text: "Loading",
     background: "rgba(0, 0, 0, 0.7)",
   });

@@ -10,7 +10,6 @@ import Loading from "../../packages/loading/index.js";
 
 const showToast = () => {
   const loading = Loading.show({
-    lock: true,
     text: "Loading",
     background: "rgba(0, 0, 0, 0.7)",
   });

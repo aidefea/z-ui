@@ -28,6 +28,8 @@ export default defineUserConfig({
             "/componentmd/popup.md",
             "/componentmd/drawer.md",
             "/componentmd/loading.md",
+            "/componentmd/notify.md",
+            "/componentmd/xscroll.md",
           ],
         },
       ],

@@ -1,7 +1,11 @@
 <template>
-  <div></div>
+  <div>
+    <notify></notify>
+  </div>
 </template>
 
-<script setup></script>
+<script setup>
+import notify from "./notify/index.vue";
+</script>
 
 <style></style>

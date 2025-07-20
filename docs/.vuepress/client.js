@@ -4,7 +4,8 @@ import Mytoast from "../../sample/toast/index.vue";
 import Mypopup from "../../sample/popup/index.vue";
 import drawer from "../../sample/drawer/index.vue";
 import loading from "../../sample/loading/index.vue";
-
+import notify from "../../sample/notify/index.vue";
+import xscroll from "../../sample/xscroll/index.vue";
 export default defineClientConfig({
   enhance({ app, router, siteData }) {
     app.component("Mybutton", Mybutton);
@@ -12,6 +13,8 @@ export default defineClientConfig({
     app.component("Mypopup", Mypopup);
     app.component("Mydrawer", drawer);
     app.component("Myloading", loading);
+    app.component("Mynotify", notify);
+    app.component("Myxscroll", xscroll);
   },
   setup() {},
   rootComponents: [],
