@@ -17,6 +17,7 @@ export default defineClientConfig({
     app.component("Myloading", loading);
     app.component("Mynotify", notify);
     app.component("Myxscroll", xscroll);
+    app.component("Mydragimage", dragimage);
     app.component("MyWatermark", Watermark);
   },
   setup() {},
