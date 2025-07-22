@@ -30,6 +30,8 @@ export default defineUserConfig({
             "/componentmd/loading.md",
             "/componentmd/notify.md",
             "/componentmd/xscroll.md",
+            "/componentmd/dragimage.md",
+            "/componentmd/Watermark.md",
           ],
         },
       ],

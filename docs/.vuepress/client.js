@@ -6,6 +6,8 @@ import drawer from "../../sample/drawer/index.vue";
 import loading from "../../sample/loading/index.vue";
 import notify from "../../sample/notify/index.vue";
 import xscroll from "../../sample/xscroll/index.vue";
+import dragimage from "../../sample/dragimage/index.vue";
+import Watermark from "../../sample/Watermark/index.vue";
 export default defineClientConfig({
   enhance({ app, router, siteData }) {
     app.component("Mybutton", Mybutton);
@@ -15,6 +17,7 @@ export default defineClientConfig({
     app.component("Myloading", loading);
     app.component("Mynotify", notify);
     app.component("Myxscroll", xscroll);
+    app.component("MyWatermark", Watermark);
   },
   setup() {},
   rootComponents: [],
